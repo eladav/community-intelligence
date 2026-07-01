@@ -23,7 +23,15 @@ export interface Tweet {
 }
 
 export interface DeckItem {
+  // Acceptance criteria fields (shared schema contract)
   id: string;
+  type: 'tweet'; // content type discriminator
+  contentSummary: string; // text content
+  timestamp: string; // ISO timestamp
+  sourceUrl: string; // URL to source content
+  depthLabel?: string; // optional categorization
+
+  // Tweet-specific extensions
   user_id: string;
   tweet_id: string;
   deck_date: string;

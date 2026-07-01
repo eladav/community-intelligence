@@ -46,6 +46,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
 
       const item: DeckItem = {
         id: 'test-1',
+        type: 'tweet',
+        contentSummary: 'This is a recent tweet',
+        timestamp: oneHourAgo.toISOString(),
+        sourceUrl: 'https://x.com/testuser/status/123',
         user_id: 'user-123',
         tweet_id: 'recent-tweet',
         deck_date: now.toISOString().split('T')[0],
@@ -81,6 +85,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
     it('should normalize missing estimated_likes to undefined (not displayed)', () => {
       const item: DeckItem = {
         id: 'sparse-1',
+        type: 'tweet',
+        contentSummary: 'Tweet without engagement metrics',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: 'https://x.com/sparse_author/status/123',
         user_id: 'user-123',
         tweet_id: 'sparse-tweet',
         deck_date: '2026-07-01',
@@ -107,6 +115,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
     it('should hide media description when has_media is false', () => {
       const item: DeckItem = {
         id: 'no-media-1',
+        type: 'tweet',
+        contentSummary: 'Tweet without media',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: 'https://x.com/no_media_author/status/123',
         user_id: 'user-123',
         tweet_id: 'no-media-tweet',
         deck_date: '2026-07-01',
@@ -131,6 +143,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
     it('should display media description when has_media is true and media_description exists', () => {
       const item: DeckItem = {
         id: 'with-media-1',
+        type: 'tweet',
+        contentSummary: 'Tweet with media content',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: 'https://x.com/media_author/status/123',
         user_id: 'user-123',
         tweet_id: 'media-tweet',
         deck_date: '2026-07-01',
@@ -156,6 +172,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
     it('should display "AI Summary:" prefix when text_is_verbatim is false', () => {
       const item: DeckItem = {
         id: 'summary-1',
+        type: 'tweet',
+        contentSummary: 'This is an AI-generated summary',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: 'https://x.com/ai_author/status/123',
         user_id: 'user-123',
         tweet_id: 'summary-tweet',
         deck_date: '2026-07-01',
@@ -181,6 +201,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
     it('should reject item with missing tweet_id and show error card', () => {
       const invalidItem = {
         id: 'bad-1',
+        type: 'tweet' as const,
+        contentSummary: 'Test text',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: 'https://x.com/test/status/123',
         user_id: 'user-123',
         deck_date: '2026-07-01',
         rank: 1,
@@ -204,6 +228,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
     it('should reject item with missing tweet object and show error card', () => {
       const invalidItem = {
         id: 'bad-2',
+        type: 'tweet' as const,
+        contentSummary: '',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: '',
         user_id: 'user-123',
         tweet_id: 'tweet-123',
         deck_date: '2026-07-01',
@@ -222,6 +250,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
     it('should reject item with missing tweet.text and show error card', () => {
       const invalidItem = {
         id: 'bad-3',
+        type: 'tweet' as const,
+        contentSummary: '',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: 'https://x.com/test/status/123',
         user_id: 'user-123',
         tweet_id: 'tweet-123',
         deck_date: '2026-07-01',
@@ -248,6 +280,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
 
       const invalidItem = {
         id: 'bad-4',
+        type: 'tweet' as const,
+        contentSummary: '',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: '',
         user_id: 'user-123',
         tweet_id: 'tweet-123',
         deck_date: '2026-07-01',
@@ -274,6 +310,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
       const validItem = MockProvider.getFullyPopulatedItem();
       const invalidItem = {
         id: 'bad-5',
+        type: 'tweet' as const,
+        contentSummary: '',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: '',
         user_id: 'user-123',
         tweet_id: 'tweet-123',
         deck_date: '2026-07-01',
@@ -296,6 +336,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
     it('should display diagnostics message when there are invalid items', () => {
       const invalidItem = {
         id: 'bad-6',
+        type: 'tweet' as const,
+        contentSummary: '',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: '',
         user_id: 'user-123',
         tweet_id: 'tweet-123',
         deck_date: '2026-07-01',
@@ -314,6 +358,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
     it('should count multiple invalid items in diagnostics', () => {
       const invalidItem1 = {
         id: 'bad-7',
+        type: 'tweet' as const,
+        contentSummary: '',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: '',
         user_id: 'user-123',
         tweet_id: 'tweet-123',
         deck_date: '2026-07-01',
@@ -326,6 +374,10 @@ describe('SwipeDeck Boundary Contract Tests', () => {
 
       const invalidItem2 = {
         id: 'bad-8',
+        type: 'tweet' as const,
+        contentSummary: 'Valid text',
+        timestamp: '2026-07-01T00:00:00Z',
+        sourceUrl: '',
         user_id: 'user-123',
         tweet_id: undefined,
         deck_date: '2026-07-01',

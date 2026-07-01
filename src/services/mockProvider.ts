@@ -59,7 +59,14 @@ const MOCK_TWEETS: Record<string, Tweet> = {
 };
 
 const FULLY_POPULATED_ITEM: DeckItem = {
+  // AC fields
   id: 'deck-item-1',
+  type: 'tweet',
+  contentSummary: 'Bottling the new vintage today. Excited to share this with the world. [1]',
+  timestamp: '2026-07-01T08:30:00Z',
+  sourceUrl: 'https://x.com/emidiopepe/status/1806345678910111213',
+  depthLabel: 'followed_handle',
+  // Tweet-specific fields
   user_id: 'user-123',
   tweet_id: 'tweet-1',
   deck_date: '2026-07-01',
@@ -71,7 +78,14 @@ const FULLY_POPULATED_ITEM: DeckItem = {
 };
 
 const SPARSE_ITEM: DeckItem = {
+  // AC fields
   id: 'deck-item-2',
+  type: 'tweet',
+  contentSummary: 'The 2024 season has been exceptional for natural wines',
+  timestamp: '2026-06-30T15:45:00Z',
+  sourceUrl: 'https://x.com/vintner_jane/status/1806345679010111214',
+  depthLabel: 'interest_match',
+  // Tweet-specific fields
   user_id: 'user-123',
   tweet_id: 'tweet-2',
   deck_date: '2026-07-01',
@@ -89,7 +103,14 @@ const SPARSE_ITEM: DeckItem = {
 };
 
 const TECH_ITEM: DeckItem = {
+  // AC fields
   id: 'deck-item-3',
+  type: 'tweet',
+  contentSummary: 'Just published findings on transformer architecture improvements',
+  timestamp: '2026-07-01T12:00:00Z',
+  sourceUrl: 'https://x.com/ai_researcher/status/1806345679110111215',
+  depthLabel: 'research_topic',
+  // Tweet-specific fields
   user_id: 'user-123',
   tweet_id: 'tweet-3',
   deck_date: '2026-07-01',
@@ -101,7 +122,14 @@ const TECH_ITEM: DeckItem = {
 };
 
 const HANDMADE_ITEM: DeckItem = {
+  // AC fields
   id: 'deck-item-4',
+  type: 'tweet',
+  contentSummary: 'New dovetail joint technique produces stronger joints with less material waste',
+  timestamp: '2026-06-28T16:00:00Z',
+  sourceUrl: 'https://x.com/woodworking_pro/status/1806345679310111217',
+  depthLabel: 'craft_technique',
+  // Tweet-specific fields
   user_id: 'user-123',
   tweet_id: 'tweet-5',
   deck_date: '2026-07-01',
