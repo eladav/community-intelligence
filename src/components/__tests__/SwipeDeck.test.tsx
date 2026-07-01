@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 import { SwipeDeck } from '../SwipeDeck';
 import { MockProvider } from '../../services/mockProvider';
 import { DeckItem, Tweet } from '../../types/deck';
@@ -26,7 +26,7 @@ describe('SwipeDeck Boundary Contract Tests', () => {
 
     it('should display fully populated item metadata correctly', () => {
       const item = MockProvider.getFullyPopulatedItem();
-      const { getByText, getByDisplayValue } = render(<SwipeDeck items={[item]} />);
+      const { getByText } = render(<SwipeDeck items={[item]} />);
 
       expect(getByText('@emidiopepe')).toBeTruthy();
       expect(getByText(/From your followed handle/)).toBeTruthy();
