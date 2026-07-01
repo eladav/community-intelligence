@@ -31,7 +31,7 @@ export interface DeckItem {
   source: 'handle' | 'interest';
   reason_for_selection: string;
   status: 'pending' | 'liked' | 'disliked';
-  tweet?: Tweet;
+  tweet: Tweet;
 }
 
 export interface DeckWithItems {

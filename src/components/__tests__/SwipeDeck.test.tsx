@@ -19,7 +19,7 @@ describe('SwipeDeck Boundary Contract Tests', () => {
       const item = MockProvider.getFullyPopulatedItem();
       const { getByText, queryByText } = render(<SwipeDeck items={[item]} />);
 
-      expect(queryByText('Data Error')).not.toBeInTheDocument();
+      expect(queryByText('Data Error')).toBeNull();
       expect(getByText('@emidiopepe')).toBeTruthy();
       expect(getByText(/Bottling the new vintage today/)).toBeTruthy();
     });
@@ -73,7 +73,7 @@ describe('SwipeDeck Boundary Contract Tests', () => {
       const item = MockProvider.getSparseItem();
       const { getByText, queryByText } = render(<SwipeDeck items={[item]} />);
 
-      expect(queryByText('Data Error')).not.toBeInTheDocument();
+      expect(queryByText('Data Error')).toBeNull();
       expect(getByText('@vintner_jane')).toBeTruthy();
       expect(getByText(/The 2024 season/)).toBeTruthy();
     });
@@ -101,7 +101,7 @@ describe('SwipeDeck Boundary Contract Tests', () => {
 
       expect(getByText('@sparse_author')).toBeTruthy();
       expect(getByText(/Tweet without engagement/)).toBeTruthy();
-      expect(queryByText(/likes/)).not.toBeInTheDocument();
+      expect(queryByText(/likes/)).toBeNull();
     });
 
     it('should hide media description when has_media is false', () => {
@@ -125,7 +125,7 @@ describe('SwipeDeck Boundary Contract Tests', () => {
       };
 
       const { queryByText } = render(<SwipeDeck items={[item]} />);
-      expect(queryByText(/📸/)).not.toBeInTheDocument();
+      expect(queryByText(/📸/)).toBeNull();
     });
 
     it('should display media description when has_media is true and media_description exists', () => {
@@ -284,7 +284,7 @@ describe('SwipeDeck Boundary Contract Tests', () => {
         tweet: {},
       };
 
-      const { getByText, queryByAllByText } = render(
+      const { getByText } = render(
         <SwipeDeck items={[validItem, invalidItem as DeckItem]} />,
       );
 
@@ -402,7 +402,7 @@ describe('SwipeDeck Boundary Contract Tests', () => {
 
       const { getByText, queryByText } = render(<SwipeDeck items={[item]} />);
       expect(getByText('@vintner_jane')).toBeTruthy();
-      expect(queryByText('Data Error')).not.toBeInTheDocument();
+      expect(queryByText('Data Error')).toBeNull();
     });
 
     it('should handle all items from mock provider daily deck', () => {
@@ -411,7 +411,7 @@ describe('SwipeDeck Boundary Contract Tests', () => {
       expect(items.length).toBeGreaterThan(0);
 
       const { queryByText } = render(<SwipeDeck items={items} />);
-      expect(queryByText('Data Error')).not.toBeInTheDocument();
+      expect(queryByText('Data Error')).toBeNull();
     });
   });
 });
